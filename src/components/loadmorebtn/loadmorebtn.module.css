@@ -1,0 +1,18 @@
+.boxBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.loadMoreBtn {
+  width: 150px;
+  height: 42px;
+  background-color: rgb(220, 193, 245);
+  color: black;
+  font-size: 18px;
+}
+.loadMoreBtn:hover,
+.loadMoreBtn:focus {
+  background-color: rgb(95, 44, 144);
+  color: aliceblue;
+  border: 1px solid rgb(220, 193, 245);
+}
