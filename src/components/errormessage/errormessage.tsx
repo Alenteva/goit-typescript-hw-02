@@ -1,4 +1,7 @@
 import css from "./errormessage.module.css";
+// type Props = {
+//   message: string;
+// };
 
 const ErrorMessage = ({ message = "" }) => {
   return (

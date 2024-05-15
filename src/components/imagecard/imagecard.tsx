@@ -1,6 +1,11 @@
 import css from "./imagecard.module.css";
+import { Image } from "../../App/App.types";
 
-const ImageCard = ({ image, openModal }) => {
+export interface ImageCardProps {
+  image: Image;
+  openModal: (image: Image) => void;
+}
+const ImageCard = ({ image, openModal }: ImageCardProps) => {
   return (
     <div onClick={() => openModal(image)}>
       <img

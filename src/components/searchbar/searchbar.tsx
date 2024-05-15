@@ -2,8 +2,12 @@ import { Field, Form, Formik } from "formik";
 import toast, { Toaster } from "react-hot-toast";
 import css from "../searchbar/searchbar.module.css";
 
-const SearchBar = ({ onSubmit }) => {
-  const handleSubmit = (values, actions) => {
+interface SearchBarProps {
+  onSubmit: (search: string) => void;
+}
+
+const SearchBar = ({ onSubmit }: SearchBarProps) => {
+  const handleSubmit = (values: { query: string }, actions: any) => {
     const formattedSearch = values.query.trim().toLowerCase(); // змінено з 'values.search' на 'values.query'
 
     if (!formattedSearch) {

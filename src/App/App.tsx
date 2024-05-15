@@ -4,30 +4,30 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import Modal from "react-modal";
 // import "./App.css";
-import SearchBar from "./components/searchbar/searchbar";
-import ImageGallery from "./components/imagegallery/imagegallery";
-import LoadMoreBtn from "./components/loadmorebtn/loadmorebtn";
-import ImageModal from "./components/imagemodal/imagemodal";
-import Loader from "./components/loader/loader";
-import ErrorMessage from "./components/errormessage/errormessage";
+import SearchBar from "../components/searchbar/searchbar";
+import ImageGallery from "../components/imagegallery/imagegallery";
+import LoadMoreBtn from "../components/loadmorebtn/loadmorebtn";
+import ImageModal from "../components/imagemodal/imagemodal";
+import Loader from "../components/loader/loader";
+import ErrorMessage from "../components/errormessage/errormessage";
 import css from "./App.module.css";
+import { Image } from "./App.types";
 
 axios.defaults.baseURL = "https://api.unsplash.com/";
 const ACCESS_KEY = "xS__PftDm3G6MIe5memPHnZa2TFBYAxs4wRjrvOk5E8";
 
 function App() {
-  const [images, setImages] = useState([]); // Стан для зберігання списку зображень
-  const [page, setPage] = useState(1); // Стан для зберігання поточної сторінки результатів
-  const [loading, setLoading] = useState(false); // Стан для відображення завантаження
-  const [error, setError] = useState(false); // Стан для відображення помилки
-  const [selectedImage, setSelectedImage] = useState(null); // Стан для зберігання вибраного зображення
-  const [searchQuery, setSearchQuery] = useState(""); // Стан для зберігання поточного пошукового запиту
-  const [isSearching, setIsSearching] = useState(false); // Стан для відображення процесу пошуку нових зображень
+  const [images, setImages] = useState<Image[]>([]); // Стан для зберігання списку зображень
+  const [page, setPage] = useState<number>(1); // Стан для зберігання поточної сторінки результатів
+  const [loading, setLoading] = useState<boolean>(false); // Стан для відображення завантаження
+  const [error, setError] = useState<any>(false); // Стан для відображення помилки
+  const [selectedImage, setSelectedImage] = useState<Image | null>(null); // Стан для зберігання вибраного зображення
+  const [searchQuery, setSearchQuery] = useState<string>(""); // Стан для зберігання поточного пошукового запиту
+  const [isSearching, setIsSearching] = useState<boolean>(false); // Стан для відображення процесу пошуку нових зображень
 
   useEffect(() => {
     Modal.setAppElement("#root");
   }, []);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -43,8 +43,8 @@ function App() {
         }
         const params = {
           query: searchQuery,
-          page: page,
-          per_page: 15,
+          page: String(page),
+          per_page: String(15),
           client_id: ACCESS_KEY,
         };
         const response = await axios.get(
@@ -73,7 +73,7 @@ function App() {
     fetchData();
   }, [searchQuery, page]);
 
-  const handleSubmit = (search) => {
+  const handleSubmit = (search: string) => {
     if (!search.trim()) {
       toast.error("The search field cannot be empty!");
     } else {
@@ -86,7 +86,7 @@ function App() {
     setPage((prevPage) => prevPage + 1);
   };
 
-  const openModal = (image) => {
+  const openModal = (image: Image) => {
     if (image) {
       setSelectedImage(image);
     }

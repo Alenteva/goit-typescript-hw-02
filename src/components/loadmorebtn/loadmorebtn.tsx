@@ -1,6 +1,11 @@
 import css from "./loadmorebtn.module.css";
 
-const LoadMoreBtn = ({ onLoadMore, hasMore }) => {
+interface LoadMoreBtnProps {
+  onLoadMore: () => void;
+  hasMore: boolean;
+}
+
+const LoadMoreBtn = ({ onLoadMore, hasMore }: LoadMoreBtnProps) => {
   if (!hasMore) {
     return null;
   }

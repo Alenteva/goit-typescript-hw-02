@@ -1,7 +1,13 @@
 import ImageCard from "../imagecard/imagecard";
 import css from "./imagegallery.module.css";
+import { Image } from "../../App/App.types";
 
-const ImageGallery = ({ images, openModal }) => {
+interface GalleryProps {
+  images: Image[];
+  openModal: (image: Image) => void;
+}
+
+const ImageGallery = ({ images, openModal }: GalleryProps) => {
   if (images.length === 0) {
     return null;
   }
