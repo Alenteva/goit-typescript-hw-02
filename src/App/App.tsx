@@ -11,7 +11,7 @@ import ImageModal from "../components/imagemodal/imagemodal";
 import Loader from "../components/loader/loader";
 import ErrorMessage from "../components/errormessage/errormessage";
 import css from "./App.module.css";
-import { Image } from "./App.types";
+import { Image, SearchResponse } from "./App.types";
 
 axios.defaults.baseURL = "https://api.unsplash.com/";
 const ACCESS_KEY = "xS__PftDm3G6MIe5memPHnZa2TFBYAxs4wRjrvOk5E8";
@@ -47,7 +47,7 @@ function App() {
           per_page: String(15),
           client_id: ACCESS_KEY,
         };
-        const response = await axios.get(
+        const response = await axios.get<SearchResponse>(
           `search/photos/?${new URLSearchParams(params).toString()}`
         );
         const { data } = response;
