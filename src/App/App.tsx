@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useEffect } from "react";
 import axios from "axios";
+import { AxiosResponse } from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import Modal from "react-modal";
 // import "./App.css";
@@ -47,7 +48,7 @@ function App() {
           per_page: String(15),
           client_id: ACCESS_KEY,
         };
-        const response = await axios.get<SearchResponse>(
+        const response: AxiosResponse<SearchResponse> = await axios.get(
           `search/photos/?${new URLSearchParams(params).toString()}`
         );
         const { data } = response;
@@ -59,7 +60,7 @@ function App() {
           );
           return;
         }
-        setImages((prevImages) =>
+        setImages((prevImages: Image[]) =>
           page === 1 ? data.results : [...prevImages, ...data.results]
         );
         toast.success(`Wow! We found ${data.total} pictures`);

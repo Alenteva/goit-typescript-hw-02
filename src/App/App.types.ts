@@ -1,11 +1,19 @@
 // Тип для зображення
 export interface Image {
   id: string;
+  width: number;
+  height: number;
   urls: {
+    raw: string;
+    full: string;
     regular: string;
     small: string;
+    thumb: string;
   };
-  alt_description: string;
+  user: {
+    name: string;
+    username: string;
+  };
 }
 
 export interface RegularImage {
@@ -23,24 +31,9 @@ export interface SmallImage {
   };
   alt_description: string;
 }
-// типи для axios
+
 export interface SearchResponse {
   total: number;
   total_pages: number;
-  results: {
-    id: string;
-    width: number;
-    height: number;
-    urls: {
-      raw: string;
-      full: string;
-      regular: string;
-      small: string;
-      thumb: string;
-    };
-    user: {
-      name: string;
-      username: string;
-    };
-  }[];
+  results: Image[];
 }
