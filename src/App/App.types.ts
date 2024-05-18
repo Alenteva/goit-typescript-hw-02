@@ -3,6 +3,7 @@ export interface Image {
   id: string;
   width: number;
   height: number;
+  alt_description: string;
   urls: {
     raw: string;
     full: string;
